@@ -30,14 +30,8 @@ variable "instance_type" {
 }
 
 variable "vpc_zone_identifier_subnet" {
-  type        = string
-  default     = "subnet-0815b23e30ee3ee4a"
-  description = "Subnet In which ASG will be working"
-}
-
-variable "vpc_zone_identifier_subnet2" {
-  type        = string
-  default     = "subnet-0b505632ddfbbff24"
+  type        = list(string)
+  default     = ["subnet-0815b23e30ee3ee4a"]
   description = "Subnet In which ASG will be working"
 }
 
