@@ -36,7 +36,6 @@ resource "aws_autoscaling_group" "Application" {
     id      = aws_launch_template.Application.id
     version = var.template_version
   }
-  target_group_arns         = var.target_group_arns
   health_check_grace_period = var.health_check_grace_period
   health_check_type         = var.health_check_type
   min_size                  = var.min_size
