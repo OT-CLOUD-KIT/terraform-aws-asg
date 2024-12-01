@@ -12,17 +12,14 @@ output "ASG_group_arn" {
   description = "Auto scaling group arn"
 }
 
-output "aws_autoscaling_policy_scale_up" {
-  value       = aws_autoscaling_policy.scale_up.id
-  description = "Auto scaling scale up policy"
-}
 
-output "aws_autoscaling_policy_scale_down" {
-  value       = aws_autoscaling_policy.scale_down.id
-  description = "Auto scaling scale down policy"
-}
 
-output "ami" {
-  value       = aws_launch_template.Application.image_id
-  description = "Ami used by launch template"
-}
+#output "aws_autoscaling_policy_scale_down" {
+#  value       = aws_autoscaling_policy.scale_down.id
+#  description = "Auto scaling scale down policy"
+#}
+
+#output "ami" {
+#  value       = aws_launch_template.Application.image_id
+#  description = "Ami used by launch template"
+#}
