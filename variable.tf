@@ -213,7 +213,7 @@ variable "adjustment_type" {
 
 variable "user_data" {
   type        = string
-  default     = "/tmp/userdata.sh"
+  default     = "userdata.sh"
   description = "any user data you want to pass"
 }
 
