@@ -41,7 +41,7 @@ resource "aws_autoscaling_group" "Application" {
   min_size                  = var.min_size
   max_size                  = var.max_size
   desired_capacity          = var.desired_size
-  vpc_zone_identifier       = [var.vpc_zone_identifier_subnet, var.vpc_zone_identifier_subnet2]
+  vpc_zone_identifier       = [var.vpc_zone_identifier_subnet]
 
   initial_lifecycle_hook {
     name                 = var.name
