@@ -1,4 +1,7 @@
 
+variable "target_group_arns" {
+  description = "Set of aws_alb_target_group ARNs for use with Application or Network Load Balancing."
+}
 variable "min_size" {
   type        = number
   default     = 1
