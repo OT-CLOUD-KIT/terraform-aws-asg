@@ -51,12 +51,12 @@ resource "aws_autoscaling_group" "Application" {
   desired_capacity          = var.desired_size
   vpc_zone_identifier       = var.vpc_zone_identifier_subnet
 
-  initial_lifecycle_hook {
-    name                 = var.name
-    default_result       = var.default_result
-    heartbeat_timeout    = var.heartbeat_timeout
-    lifecycle_transition = var.lifecycle_transition
-  }
+  #initial_lifecycle_hook {
+   # name                 = var.name
+    #default_result       = var.default_result
+    #heartbeat_timeout    = var.heartbeat_timeout
+    #lifecycle_transition = var.lifecycle_transition
+  #}
 }
 
 resource "aws_autoscaling_policy" "scale_up" {
