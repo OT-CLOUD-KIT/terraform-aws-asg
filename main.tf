@@ -5,7 +5,14 @@ resource "aws_launch_template" "Application" {
   image_id      = var.ami
   instance_type = var.instance_type
   key_name      = var.key_name
-  user_data     = templatefile("userdata.tftpl", { S3_bucket_name = var.S3_bucket_name, S3_remote_path = var.S3_remote_path, S3_artifact_version = var.S3_artifact_version, S3_artifact_zip = var.S3_artifact_zip, local_destination = var.local_destination, remote_server_app_deployment_path = var.remote_server_app_deployment_path })
+  user_data = base64encode(templatefile("userdata.tftpl", {
+  S3_bucket_name                  = var.S3_bucket_name,
+  S3_remote_path                  = var.S3_remote_path,
+  S3_artifact_version             = var.S3_artifact_version,
+  S3_artifact_zip                 = var.S3_artifact_zip,
+  local_destination               = var.local_destination,
+  remote_server_app_deployment_path = var.remote_server_app_deployment_path
+}))
 
 
   block_device_mappings {
