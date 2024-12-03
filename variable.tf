@@ -319,3 +319,33 @@ variable "cpu_statistics" {
   default     = "Average"
   type        = string
 }
+
+variable "S3_bucket_name" {
+  type        = string
+  description = "name of the S3 bucket"
+}
+
+variable "S3_remote_path" {
+  type        = string
+  description = "path of the file in the S3 bucket"
+}
+
+variable "S3_artifact_version" {
+  type        = string
+  description = "version of the file in the S3 bucket"
+}
+
+variable "S3_artifact_zip" {
+  type        = string
+  description = "artifact zip name present in the S3 bucket"
+}
+
+variable "local_destination" {
+  type        = string
+  description = "path on the asg server where artifact will go"
+}
+
+variable "remote_server_app_deployment_path" {
+  type        = string
+  description = "path on the asg server where artifact will be put for application deployment"
+}
