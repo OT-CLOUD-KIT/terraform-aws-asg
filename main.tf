@@ -64,7 +64,7 @@ resource "aws_autoscaling_policy" "scale_up" {
   policy_type            = var.policy_type_scale_up
   adjustment_type        = var.adjustment_type
   autoscaling_group_name = aws_autoscaling_group.Application.name
-  cooldown               = var.cooldown
+  #cooldown               = var.cooldown
   target_tracking_configuration {
     target_value     = var.cpu_threshold_up
     disable_scale_in = var.disable_scale_in
@@ -105,7 +105,7 @@ resource "aws_autoscaling_policy" "scale_down" {
   name                   = "${var.name}-asg-scale-down"
   autoscaling_group_name = aws_autoscaling_group.Application.name
   adjustment_type        = var.adjustment_type
-  cooldown               = var.cooldown
+  #cooldown               = var.cooldown
   policy_type            = var.policy_type_scale_down
   target_tracking_configuration {
     target_value     = var.cpu_threshold_down
