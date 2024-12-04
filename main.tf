@@ -70,7 +70,7 @@ resource "aws_autoscaling_policy" "scale_up" {
   }
   lifecycle {
     create_before_destroy = true
-    prevent_destroy        = true
+    #prevent_destroy        = true
   }
 }
 
@@ -114,7 +114,7 @@ resource "aws_autoscaling_policy" "scale_down" {
   }
   lifecycle {
     create_before_destroy = true
-    prevent_destroy        = true
+    #prevent_destroy        = true
   }
 }
 
