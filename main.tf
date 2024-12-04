@@ -69,7 +69,8 @@ resource "aws_autoscaling_policy" "scale_up" {
     }
   }
   lifecycle {
-    ignore_changes = [target_tracking_configuration]
+    create_before_destroy = true
+    prevent_destroy        = true
   }
 }
 
@@ -112,7 +113,8 @@ resource "aws_autoscaling_policy" "scale_down" {
     }
   }
   lifecycle {
-    ignore_changes = [target_tracking_configuration]
+    create_before_destroy = true
+    prevent_destroy        = true
   }
 }
 
