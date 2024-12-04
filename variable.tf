@@ -53,11 +53,6 @@ variable "policy_type_scale_up" {
   default     = "TargetTrackingScaling"
   description = "Mention type of scale up policy"
 }
-#variable "cooldown" {
-#  type        = number
-#  default     = "300"
-#  description = "Cooldown period in seconds"
-#}
 
 
 variable "template_version" {
@@ -204,11 +199,6 @@ variable "comparison_operator_scale_down" {
   description = "Scale down Comparison Operator"
 }
 
-variable "adjustment_type" {
-  type        = string
-  default     = "ChangeInCapacity"
-  description = "Cloud watch adjustment_type "
-}
 
 variable "user_data" {
   type        = string
