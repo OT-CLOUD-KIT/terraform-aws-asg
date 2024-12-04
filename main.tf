@@ -51,13 +51,6 @@ resource "aws_autoscaling_group" "Application" {
   max_size                  = var.max_size
   desired_capacity          = var.desired_size
   vpc_zone_identifier       = var.vpc_zone_identifier_subnet
-
-  #initial_lifecycle_hook {
-   # name                 = var.name
-    #default_result       = var.default_result
-    #heartbeat_timeout    = var.heartbeat_timeout
-    #lifecycle_transition = var.lifecycle_transition
-  #}
 }
 
 resource "aws_autoscaling_policy" "scale_up" {
@@ -65,7 +58,6 @@ resource "aws_autoscaling_policy" "scale_up" {
   name                   = "${var.name}-asg-scale-up"
   policy_type            = var.policy_type_scale_up
   autoscaling_group_name = aws_autoscaling_group.Application.name
-  #cooldown               = var.cooldown
   target_tracking_configuration {
     target_value     = var.cpu_threshold_up
     disable_scale_in = var.disable_scale_in
@@ -75,6 +67,9 @@ resource "aws_autoscaling_policy" "scale_up" {
       namespace   = "AWS/EC2"
       statistic   = var.cpu_statistics
     }
+  }
+  lifecycle {
+    ignore_changes = [target_tracking_configuration]
   }
 }
 
@@ -115,6 +110,9 @@ resource "aws_autoscaling_policy" "scale_down" {
       namespace   = "AWS/EC2"
       statistic   = var.cpu_statistics
     }
+  }
+  lifecycle {
+    ignore_changes = [target_tracking_configuration]
   }
 }
 
