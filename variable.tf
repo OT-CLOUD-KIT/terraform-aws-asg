@@ -106,7 +106,7 @@ variable "name_template" {
 variable "comman_tags" {
   type = map(string)
   default = {
-    "Project" = "ot-microservices"
+    #"Project" = "ot-microservices"
   }
   description = "Comman tags will be defined here"
 }
