@@ -349,7 +349,7 @@ variable "remote_server_app_deployment_path" {
   description = "path on the asg server where artifact will be put for application deployment"
 }
 
-variable "userdata.tftpl" {
+variable "userdata" {
   type        = string
   description = "name of the userdata file"
   default = "userdata.tftpl"
