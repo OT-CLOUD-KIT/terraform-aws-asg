@@ -320,24 +320,24 @@ variable "cpu_statistics" {
   type        = string
 }
 
-variable "S3_bucket_name" {
+variable "s3_bucket_name" {
   type        = string
-  description = "name of the S3 bucket"
+  description = "name of the s3 bucket"
 }
 
-variable "S3_remote_path" {
+variable "s3_remote_path" {
   type        = string
-  description = "path of the file in the S3 bucket"
+  description = "path of the file in the s3 bucket"
 }
 
-variable "S3_artifact_version" {
+variable "s3_artifact_version" {
   type        = string
-  description = "version of the file in the S3 bucket"
+  description = "version of the file in the s3 bucket"
 }
 
-variable "S3_artifact_zip" {
+variable "s3_artifact_zip" {
   type        = string
-  description = "artifact zip name present in the S3 bucket"
+  description = "artifact zip name present in the s3 bucket"
 }
 
 variable "local_destination" {
@@ -348,4 +348,14 @@ variable "local_destination" {
 variable "remote_server_app_deployment_path" {
   type        = string
   description = "path on the asg server where artifact will be put for application deployment"
+}
+
+variable "userdata.tftpl" {
+  type        = string
+  description = "name of the userdata file"
+  default = "userdata.tftpl"
+}
+variable "s3_artifact_folder_name" {
+  type        = string
+  description = "name of s3 artifact folder"
 }
