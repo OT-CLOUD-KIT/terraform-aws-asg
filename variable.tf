@@ -13,7 +13,6 @@ variable "max_size" {
   default     = 1
   description = " Maximum number of Instances to maintained"
 }
-
 variable "desired_size" {
   type        = number
   default     = 1

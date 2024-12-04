@@ -9,7 +9,6 @@ aws s3 cp s3://${s3_bucket_name}/${s3_remote_path}/${s3_artifact_version}/${s3_a
 rm -rf ${s3_artifact_folder_name}   
 unzip -o ${s3_artifact_zip} -d ${local_destination}
 echo "s3 file copy complete"
-
 rm -rf ${s3_artifact_zip}
 sudo rm -rf ${remote_server_app_deployment_path}*
 sudo cp -r ${local_destination}/${s3_artifact_folder_name}/* ${remote_server_app_deployment_path}

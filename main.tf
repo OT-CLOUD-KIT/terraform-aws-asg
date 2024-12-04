@@ -15,6 +15,7 @@ resource "aws_launch_template" "Application" {
   remote_server_app_deployment_path = var.remote_server_app_deployment_path
 }))
 
+
   block_device_mappings {
     device_name = var.device_name
 
