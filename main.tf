@@ -101,11 +101,6 @@ resource "aws_autoscaling_policy" "scale_up" {
   }
   lifecycle {
     create_before_destroy = true
-<<<<<<< HEAD
-    #prevent_destroy        = true
-=======
-    prevent_destroy       = true
->>>>>>> f7b2653 (adding code of iam_role)
   }
 }
 
@@ -149,11 +144,6 @@ resource "aws_autoscaling_policy" "scale_down" {
   }
   lifecycle {
     create_before_destroy = true
-<<<<<<< HEAD
-    #prevent_destroy        = true
-=======
-    prevent_destroy       = true
->>>>>>> f7b2653 (adding code of iam_role)
   }
 }
 
