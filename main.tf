@@ -23,7 +23,7 @@ resource "aws_iam_role_policy_attachment" "s3-policy-attach" {
 }
 
 resource "aws_iam_instance_profile" "asg_server_iam_role_profile" {
-  name = "${var.env}-asg-server-role"
+  #name = "${var.env}-asg-server-role"
   role = aws_iam_role.asg_server_iam_role.name
 }
 
