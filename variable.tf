@@ -342,9 +342,15 @@ variable "remote_server_app_deployment_path" {
 variable "userdata" {
   type        = string
   description = "name of the userdata file"
-  default = "userdata.tftpl"
+  default     = "userdata.tftpl"
 }
 variable "s3_artifact_folder_name" {
   type        = string
   description = "name of s3 artifact folder"
+}
+
+#iam_role
+variable "env" {
+  type    = string
+  default = "staging"
 }

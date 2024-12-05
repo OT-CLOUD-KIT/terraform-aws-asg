@@ -1,3 +1,33 @@
+resource "aws_iam_role" "asg_server_iam_role" {
+  name = "${var.env}-asg-server-role"
+
+  assume_role_policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Principal" : {
+            "Service" : "ec2.amazonaws.com"
+          },
+          "Action" : "sts:AssumeRole"
+        }
+      ]
+    }
+  )
+}
+
+resource "aws_iam_role_policy_attachment" "s3-policy-attach" {
+  role       = aws_iam_role.asg_server_iam_role.name
+  policy_arn = data.aws_iam_policy.s3_fullaccess.arn
+}
+
+resource "aws_iam_instance_profile" "asg_server_iam_role_profile" {
+  name = "${var.env}-asg-server-role"
+  role = aws_iam_role.asg_server_iam_role.name
+}
+
+
 # Launch Templates of Applications
 ####launch Template Creation
 resource "aws_launch_template" "Application" {
@@ -6,16 +36,17 @@ resource "aws_launch_template" "Application" {
   instance_type = var.instance_type
   key_name      = var.key_name
   user_data = base64encode(templatefile(var.userdata, {
-  s3_bucket_name                  = var.s3_bucket_name,
-  s3_remote_path                  = var.s3_remote_path,
-  s3_artifact_version             = var.s3_artifact_version,
-  s3_artifact_zip                 = var.s3_artifact_zip,
-  local_destination               = var.local_destination,
-  s3_artifact_folder_name         = var.s3_artifact_folder_name
-  remote_server_app_deployment_path = var.remote_server_app_deployment_path
-}))
-
-
+    s3_bucket_name                    = var.s3_bucket_name,
+    s3_remote_path                    = var.s3_remote_path,
+    s3_artifact_version               = var.s3_artifact_version,
+    s3_artifact_zip                   = var.s3_artifact_zip,
+    local_destination                 = var.local_destination,
+    s3_artifact_folder_name           = var.s3_artifact_folder_name
+    remote_server_app_deployment_path = var.remote_server_app_deployment_path
+  }))
+  iam_instance_profile {
+    name = aws_iam_instance_profile.asg_server_iam_role_profile.arn
+  }
   block_device_mappings {
     device_name = var.device_name
 
@@ -70,7 +101,11 @@ resource "aws_autoscaling_policy" "scale_up" {
   }
   lifecycle {
     create_before_destroy = true
+<<<<<<< HEAD
     #prevent_destroy        = true
+=======
+    prevent_destroy       = true
+>>>>>>> f7b2653 (adding code of iam_role)
   }
 }
 
@@ -114,7 +149,11 @@ resource "aws_autoscaling_policy" "scale_down" {
   }
   lifecycle {
     create_before_destroy = true
+<<<<<<< HEAD
     #prevent_destroy        = true
+=======
+    prevent_destroy       = true
+>>>>>>> f7b2653 (adding code of iam_role)
   }
 }
 
