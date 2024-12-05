@@ -45,7 +45,7 @@ resource "aws_launch_template" "Application" {
     remote_server_app_deployment_path = var.remote_server_app_deployment_path
   }))
   iam_instance_profile {
-    name = aws_iam_instance_profile.asg_server_iam_role_profile.arn
+    name = aws_iam_instance_profile.asg_server_iam_role_profile.name
   }
   block_device_mappings {
     device_name = var.device_name
