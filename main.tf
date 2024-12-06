@@ -84,29 +84,28 @@ resource "aws_autoscaling_group" "Application" {
   vpc_zone_identifier       = var.vpc_zone_identifier_subnet
 }
 
-resource "aws_autoscaling_policy" "scale_up" {
+
+resource "aws_autoscaling_policy" "target_tracking_policy" {
   count                  = var.enable_cpu_based_autoscaling ? 1 : 0
-  name                   = "${var.name}-asg-scale-up"
+  name                   = "${var.name}-policy"
   policy_type            = var.policy_type_scale_up
   autoscaling_group_name = aws_autoscaling_group.Application.name
   target_tracking_configuration {
-    target_value     = var.cpu_threshold_up
+    target_value     = var.cpu_threshold
+    predefined_metric_specification {
+    predefined_metric_type = var.predefined_metric_type 
+  }
     disable_scale_in = var.disable_scale_in
-
-    customized_metric_specification {
-      metric_name = "CPUReservation"
-      namespace   = "AWS/EC2"
-      statistic   = var.cpu_statistics
-    }
   }
   lifecycle {
     create_before_destroy = true
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
+
+resource "aws_cloudwatch_metric_alarm" "scale_alarm" {
   count               = var.create_scale_up_alarm ? 1 : 0
-  alarm_name          = "${var.name}-asg-scale-up-alarm"
+  alarm_name          = "${var.name}-asg-scale-alarm"
   alarm_description   = var.alarm_description
   comparison_operator = var.comparison_operator_scale_up
   evaluation_periods  = var.scale_up_evaluation_periods
@@ -119,51 +118,7 @@ resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
     "AutoScalingGroupName" = aws_autoscaling_group.Application.name
   }
   actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.scale_up[count.index].arn]
-  tags = merge(
-    var.comman_tags,
-    var.cloudwatch_alarm_tags
-  )
-}
-
-# scale down policy
-resource "aws_autoscaling_policy" "scale_down" {
-  count                  = var.create_scale_down_policy ? 1 : 0
-  name                   = "${var.name}-asg-scale-down"
-  autoscaling_group_name = aws_autoscaling_group.Application.name
-  policy_type            = var.policy_type_scale_down
-  target_tracking_configuration {
-    target_value     = var.cpu_threshold_down
-    disable_scale_in = var.disable_scale_down
-
-    customized_metric_specification {
-      metric_name = "CPUReservation"
-      namespace   = "AWS/EC2"
-      statistic   = var.cpu_statistics
-    }
-  }
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-# scale down alarm
-resource "aws_cloudwatch_metric_alarm" "scale_down_alarm" {
-  count               = var.create_scale_down_alarm ? 1 : 0
-  alarm_name          = "${var.name}-asg-scale-down-alarm"
-  alarm_description   = var.alarm_description_scale_down
-  comparison_operator = var.comparison_operator_scale_down
-  evaluation_periods  = var.scale_down_evaluation_periods
-  metric_name         = var.metric_name
-  namespace           = var.namespace
-  period              = var.period
-  statistic           = var.statistic
-  threshold           = var.scale_down_threshold
-  dimensions = {
-    "AutoScalingGroupName" = aws_autoscaling_group.Application.name
-  }
-  actions_enabled = true
-  alarm_actions   = [aws_autoscaling_policy.scale_down[count.index].arn]
+  alarm_actions   = [aws_autoscaling_policy.target_tracking_policy[count.index].arn]
   tags = merge(
     var.comman_tags,
     var.cloudwatch_alarm_tags
