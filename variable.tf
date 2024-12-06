@@ -282,16 +282,17 @@ variable "create_scale_down_alarm" {
   description = "Set this to TRUE if you want to create scale down Alarm"
 }
 
-variable "cpu_threshold_up" {
+variable "cpu_threshold" {
   description = "Keep the CPU Reservation around this value. Value is in percentage (0..100). Must be specified if cpu based autoscaling is enabled."
   default     = 90
   type        = number
 }
-variable "cpu_threshold_down" {
-  description = "Keep the CPU Reservation around this value. Value is in percentage (0..100). Must be specified if cpu based autoscaling is enabled."
-  default     = 30
-  type        = number
+variable "predefined_metric_type" {
+  description = "Predefined metric."
+  default     = "ASGAverageCPUUtilization"
+  
 }
+
 variable "disable_scale_in" {
   description = "Indicates whether scale in by the target tracking policy is disabled."
   default     = false
@@ -303,12 +304,6 @@ variable "disable_scale_down" {
   default     = false
   type        = bool
 }
-variable "cpu_statistics" {
-  description = "Statistics to use: [Maximum, SampleCount, Sum, Minimum, Average]. Note that resolution used in alarm generated is 1 minute."
-  default     = "Average"
-  type        = string
-}
-
 variable "s3_bucket_name" {
   type        = string
   description = "name of the s3 bucket"
