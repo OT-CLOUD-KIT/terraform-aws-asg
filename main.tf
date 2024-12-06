@@ -35,6 +35,7 @@ resource "aws_launch_template" "Application" {
   image_id      = var.ami
   instance_type = var.instance_type
   key_name      = var.key_name
+  version = var.launch_template_version
   user_data = base64encode(templatefile(var.userdata, {
     s3_bucket_name                    = var.s3_bucket_name,
     s3_remote_path                    = var.s3_remote_path,
