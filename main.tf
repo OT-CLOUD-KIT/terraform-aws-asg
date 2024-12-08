@@ -39,7 +39,6 @@ resource "aws_launch_template" "Application" {
   user_data = base64encode(templatefile(var.userdata, {
     s3_bucket_name                    = var.s3_bucket_name,
     s3_remote_path                    = var.s3_remote_path,
-    s3_artifact_version               = var.s3_artifact_version,
     s3_artifact_zip                   = var.s3_artifact_zip,
     local_destination                 = var.local_destination,
     s3_artifact_folder_name           = var.s3_artifact_folder_name
