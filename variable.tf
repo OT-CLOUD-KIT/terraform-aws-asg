@@ -320,11 +320,6 @@ variable "s3_remote_path" {
   description = "path of the file in the s3 bucket"
 }
 
-variable "s3_artifact_version" {
-  type        = string
-  description = "version of the file in the s3 bucket"
-}
-
 variable "s3_artifact_zip" {
   type        = string
   description = "artifact zip name present in the s3 bucket"
