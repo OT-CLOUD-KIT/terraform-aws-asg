@@ -2,11 +2,6 @@
 variable "target_group_arns" {
   description = "Set of aws_alb_target_group ARNs for use with Application or Network Load Balancing."
 }
-#variable "launch_template_version" {
-#  description = "Launch template version. Can be version number, `$Latest`, or `$Default`"
-#  type        = string
-#  default     = null
-#}
 
 variable "min_size" {
   type        = number
@@ -107,7 +102,7 @@ variable "name_template" {
 variable "comman_tags" {
   type = map(string)
   default = {
-    #"Project" = "ot-microservices"
+    "owner" = "devops"
   }
   description = "Comman tags will be defined here"
 }
