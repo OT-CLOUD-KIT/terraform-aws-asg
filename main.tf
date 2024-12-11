@@ -35,7 +35,6 @@ resource "aws_launch_template" "Application" {
   image_id      = var.ami
   instance_type = var.instance_type
   key_name      = var.key_name
-  default_version = 1
   #version = var.launch_template_version
   user_data = base64encode(templatefile(var.userdata, {
     s3_bucket_name                    = var.s3_bucket_name,
@@ -74,7 +73,7 @@ resource "aws_autoscaling_group" "Application" {
   name = var.name
   launch_template {
     id      = aws_launch_template.Application.id
-    version = aws_launch_template.Application.default_version #var.template_version
+    version = var.template_version
   }
   target_group_arns         = var.target_group_arns
   health_check_grace_period = var.health_check_grace_period
@@ -83,12 +82,12 @@ resource "aws_autoscaling_group" "Application" {
   max_size                  = var.max_size
   desired_capacity          = var.desired_size
   vpc_zone_identifier       = var.vpc_zone_identifier_subnet
-  instance_refresh {
-    strategy = "Rolling"
-    preferences {
-      min_healthy_percentage = 50
-    }
-  }
+  #instance_refresh {
+  #  strategy = "Rolling"
+  #  preferences {
+  #    min_healthy_percentage = 50
+  #  }
+  #}
 }
 
 
