@@ -42,7 +42,7 @@ resource "aws_launch_template" "Application" {
     s3_artifact_zip                   = var.s3_artifact_zip,
     local_destination                 = var.local_destination,
     s3_artifact_folder_name           = var.s3_artifact_folder_name
-    env_name                          = var.env_name
+    env                               = var.env
     remote_server_app_deployment_path = var.remote_server_app_deployment_path
   }))
   iam_instance_profile {
