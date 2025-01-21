@@ -63,7 +63,7 @@ variable "policy_type_scale_up" {
 
 variable "template_version" {
   type        = string
-  default     = "$Latest"
+  default     = "16" # "$Latest"
   description = "Version of template you want to use"
 }
 
