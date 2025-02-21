@@ -10,24 +10,24 @@ variable "target_group_arns" {
 #}
 variable "min_size" {
   type        = number
-  default     = 1
+  #default     = 1
   description = " Minimum number of Instances to maintained"
 }
 
 variable "max_size" {
   type        = number
-  default     = 1
+  #default     = 1
   description = " Maximum number of Instances to maintained"
 }
 variable "desired_size" {
   type        = number
-  default     = 1
+  #default     = 1
   description = " desired number of Instance to maintain"
 }
 
 variable "ami" {
   type        = string
-  default     = "ami-0c5276bfa499e8a24"
+  #default     = "ami-0c5276bfa499e8a24"
   description = "Ami on which instance shuold be running"
 }
 
