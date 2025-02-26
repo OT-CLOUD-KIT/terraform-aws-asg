@@ -1,5 +1,5 @@
 resource "aws_iam_role" "asg_server_iam_role" {
-  name = "${var.env}-asg-server-role"
+  name = "${var.env}-es-asg-server-role"
 
   assume_role_policy = jsonencode(
     {
