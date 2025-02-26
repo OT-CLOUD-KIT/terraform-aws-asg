@@ -36,15 +36,7 @@ resource "aws_launch_template" "Application" {
   instance_type = var.instance_type
   key_name      = var.key_name
   #version = var.launch_template_version
-  user_data = base64encode(templatefile(var.userdata, {
-    s3_bucket_name                    = var.s3_bucket_name,
-    s3_remote_path                    = var.s3_remote_path,
-    s3_artifact_zip                   = var.s3_artifact_zip,
-    local_destination                 = var.local_destination,
-    s3_artifact_folder_name           = var.s3_artifact_folder_name
-    env                               = var.env
-    remote_server_app_deployment_path = var.remote_server_app_deployment_path
-  }))
+  user_data = var.user_data
   iam_instance_profile {
     name = aws_iam_instance_profile.asg_server_iam_role_profile.name
   }
@@ -98,10 +90,10 @@ resource "aws_autoscaling_policy" "target_tracking_policy" {
   policy_type            = var.policy_type_scale_up
   autoscaling_group_name = aws_autoscaling_group.Application.name
   target_tracking_configuration {
-    target_value     = var.cpu_threshold
+    target_value = var.cpu_threshold
     predefined_metric_specification {
-    predefined_metric_type = var.predefined_metric_type 
-  }
+      predefined_metric_type = var.predefined_metric_type
+    }
     disable_scale_in = var.disable_scale_in
   }
   lifecycle {

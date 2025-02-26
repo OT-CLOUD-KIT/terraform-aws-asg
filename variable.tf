@@ -9,24 +9,24 @@ variable "target_group_arns" {
 #  default     = null
 #}
 variable "min_size" {
-  type        = number
+  type = number
   #default     = 1
   description = " Minimum number of Instances to maintained"
 }
 
 variable "max_size" {
-  type        = number
+  type = number
   #default     = 1
   description = " Maximum number of Instances to maintained"
 }
 variable "desired_size" {
-  type        = number
+  type = number
   #default     = 1
   description = " desired number of Instance to maintain"
 }
 
 variable "ami" {
-  type        = string
+  type = string
   #default     = "ami-0c5276bfa499e8a24"
   description = "Ami on which instance shuold be running"
 }
@@ -208,7 +208,7 @@ variable "comparison_operator_scale_down" {
 
 variable "user_data" {
   type        = string
-  default     = "userdata.sh"
+  default     = ""
   description = "any user data you want to pass"
 }
 
@@ -296,7 +296,7 @@ variable "cpu_threshold" {
 variable "predefined_metric_type" {
   description = "Predefined metric."
   default     = "ASGAverageCPUUtilization"
-  
+
 }
 
 variable "disable_scale_in" {
@@ -315,35 +315,6 @@ variable "s3_bucket_name" {
   description = "name of the s3 bucket"
 }
 
-variable "s3_remote_path" {
-  type        = string
-  description = "path of the file in the s3 bucket"
-}
-
-variable "s3_artifact_zip" {
-  type        = string
-  description = "artifact zip name present in the s3 bucket"
-}
-
-variable "local_destination" {
-  type        = string
-  description = "path on the asg server where artifact will go"
-}
-
-variable "remote_server_app_deployment_path" {
-  type        = string
-  description = "path on the asg server where artifact will be put for application deployment"
-}
-
-variable "userdata" {
-  type        = string
-  description = "name of the userdata file"
-  default     = "userdata.tftpl"
-}
-variable "s3_artifact_folder_name" {
-  type        = string
-  description = "name of s3 artifact folder"
-}
 
 #iam_role
 variable "env" {
