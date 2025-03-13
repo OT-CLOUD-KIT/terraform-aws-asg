@@ -51,7 +51,7 @@ variable "key_name" {
 
 variable "name" {
   type        = string
-  default     = "app-staging-asg"
+  #default     = "app-staging-asg"
   description = "Name for Resources"
 }
 variable "policy_type_scale_up" {
