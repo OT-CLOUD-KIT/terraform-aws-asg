@@ -348,5 +348,5 @@ variable "s3_artifact_folder_name" {
 #iam_role
 variable "env" {
   type    = string
-  default = "staging"
+  #default = "staging"
 }
