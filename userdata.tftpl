@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Update and install required packages
+sudo apt update -y
+sudo apt install -y awscli unzip
+
+# Check if the file exists after downloading
+echo "Downloading the file from S3..."
+sudo aws s3 cp s3://${s3_bucket_name}/${s3_remote_path}/${env}/${s3_artifact_zip} ${local_destination}
+
+# Verify the file download
+if [ -f "${local_destination}/${s3_artifact_zip}" ]; then
+    echo "File downloaded successfully: ${local_destination}/${s3_artifact_zip}"
+else
+    echo "Error: File not found: ${local_destination}/${s3_artifact_zip}"
+    exit 1
+fi
+
+# Unzip the file
+echo "Unzipping the file..."
+sudo unzip -o "${local_destination}/${s3_artifact_zip}" -d "${local_destination}"
+
+# Verify the unzipped content
+if [ -d "${local_destination}/${s3_artifact_folder_name}" ]; then
+    echo "Unzip successful!"
+else
+    echo "Error: Unzipped folder not found: ${local_destination}/${s3_artifact_folder_name}"
+    exit 1
+fi
+
+# Copy files to the deployment path
+echo "Copying files to the deployment path..."
+sudo cp -r "${local_destination}/${s3_artifact_folder_name}"/* "${remote_server_app_deployment_path}/"
+
+echo "Deployment completed!"
