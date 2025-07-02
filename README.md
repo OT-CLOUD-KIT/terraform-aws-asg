@@ -1,6 +1,6 @@
 # Terraform AWS ASG (Auto Scaling Group) Module
 
-A Terraform module to deploy an Auto Scaling Group (ASG) on AWS with optional Aurora DB integration, ALB listener rules, health checks, and scaling policies.
+A Terraform module to deploy an Auto Scaling Group (ASG) on AWS, ALB listener rules, health checks, and scaling policies.
 
 ---
 
@@ -26,7 +26,6 @@ This module creates the following resources:
 
 ## Architecture
 
-![Architecture](https://github.com/user-attachments/assets/5b5019a4-d2b2-4801-8add-451254f1db8d)
 
 ---
 
