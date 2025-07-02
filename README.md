@@ -25,6 +25,7 @@ This module creates the following resources:
 ---
 
 ## Architecture
+![asg3 drawio](https://github.com/user-attachments/assets/8dc894c1-7f99-42d6-b5bb-5b5e57b51d88)
 
 
 ---
