@@ -26,7 +26,6 @@ This module creates the following resources:
 
 ## Architecture
 
-![Architecture](https://github.com/user-attachments/assets/5b5019a4-d2b2-4801-8add-451254f1db8d)
 
 ---
 
