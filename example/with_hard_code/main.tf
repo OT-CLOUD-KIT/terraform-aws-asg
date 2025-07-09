@@ -24,7 +24,7 @@ module "standard_tags" {
 
 
 module "asg" {
-  source = "../../"
+  source = "git@github.com:OT-CLOUD-KIT/terraform-aws-asg.git?ref=feature?ref=feature"
 
   # Global naming
   bu      = var.bu
