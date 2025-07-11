@@ -1,5 +1,5 @@
 # -------------------------
-# module/launch_template/main.tf
+# Launch_template
 # -------------------------
 resource "aws_launch_template" "this" {
   name_prefix   = "${local.base_name}-lt-"
@@ -106,7 +106,7 @@ resource "aws_launch_template" "this" {
 }
 
 # -------------------------
-# module/autoscaling_group/main.tf
+# autoscaling_group
 # -------------------------
 resource "aws_autoscaling_group" "this" {
   name                      = "${local.base_name}-asg"
@@ -200,7 +200,7 @@ instance_refresh {
 }
 
 # -------------------------
-# module/autoscaling_group/policies.tf
+# autoscaling_group
 # -------------------------
 resource "aws_autoscaling_policy" "target_tracking_cpu" {
   count                  = var.enable_target_tracking ? 1 : 0

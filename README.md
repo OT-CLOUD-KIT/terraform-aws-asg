@@ -35,7 +35,7 @@ This module creates the following resources:
 ```hcl
 
 module "asg" {
-  source = ""
+  source = "OT-CLOUD-KIT/terraform-aws-asg"
   
   ami_id              = "ami-020cba7c55df1f615"
   instance_type       = "t2.micro"
